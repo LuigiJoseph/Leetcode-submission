@@ -6,9 +6,11 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                if i == j:
-                    continue
-                if nums[i] + nums[j] == target:
-                    return i,j
+        HashMap = {} #val : index
+
+        for index, val in enumerate(nums):
+            difference = target - val
+            if difference in HashMap:
+                return [HashMap[difference], index]
+            HashMap[val] = index
+        return
